@@ -2,13 +2,26 @@ body{
 	background-color:#D9F0FF;
 }
 
+canvas.square {
+	border: 1px solid black;
+	margin: 0px;
+	padding: 0px
+}
+
+div.group {
+	border: 5px solid black;
+	width: 175px;
+	height: 175px;
+	position: relative;
+}
+
 #tictactoe_background{
 	/*/margin-top:30px;/*/
 	position:relative;
 	margin-left:auto;
 	margin-right:auto;
-	width: 500px;
-	height:500px;
+	width: 600px;
+	height:600px;
 	border-radius:25px; 
    -moz-border-radius:25px;
 	box-shadow: 10px 10px 5px #888888;
@@ -17,11 +30,11 @@ body{
 
 #tictactoe_board{
 	position:absolute;
-	width:450px; 
-	height:458px;
+	width:600px; 
+	height:600px;
 	margin-left:25px;
 	margin-top:25px;
-	background-color:#000000; 
+	background-color: white;
 	line-height:.8em;
 }
 

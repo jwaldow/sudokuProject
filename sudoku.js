@@ -1,6 +1,5 @@
 
-window.onload = function(){
-
+window.onload = function() {
 
 	//Create 9 canvases for the 9 squares in the game
 	for(i=0;i<81;i++){

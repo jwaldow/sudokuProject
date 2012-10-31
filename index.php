@@ -10,7 +10,9 @@
 <div id="content">
 	<h1>HTML5 Tic&dash;Tac&dash;Toe</h1>
 	<div id="tictactoe_background">
+	
 	<div id="tictactoe_board"></div>
+	
 	</div>
 	<div id="controls">
 		<button id="reset">Reset</button>

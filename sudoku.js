@@ -9,7 +9,7 @@ window.onload = function(){
 		c.setAttribute('row', (Math.floor(i/9)+1));
 		//sets the col of the grid (starts from 1)
 		c.setAttribute('col', ((i%9)+1));
-		c.setAttribute('id','outerCanvas'+(i+1));			
+		c.setAttribute('id',i);			
 		c.setAttribute('width',50);					
 		c.setAttribute('height',50);
 		c.className = i;
@@ -22,6 +22,7 @@ window.onload = function(){
 		document.getElementById("tictactoe_board").appendChild(c);		
 		//Make some HTML5 modifications to each canvas
 		var ctx=c.getContext('2d');	
+		
 		ctx.fillStyle='#FFFFFF';							
 		if ( c.getAttribute('col') == '4' || c.getAttribute('col') == '7'){
 			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
@@ -82,7 +83,7 @@ function mouseOut(){
 
 
 function makeChoice(){
-
+	alert(this.id);
 }
 
 function pickSquare(){

@@ -1,116 +1,93 @@
+var selected = null;
 
-window.onload = function(){
-
-
-	//Create 9 canvases for the 9 squares in the game
-	for(i=0;i<81;i++){
-		var c = document.createElement("canvas");
-		//sets the row of the square (starts from 1)
-		c.setAttribute('row', (Math.floor(i/9)+1));
-		//sets the col of the grid (starts from 1)
-		c.setAttribute('col', ((i%9)+1));
-		c.setAttribute('id',i);			
-		c.setAttribute('width',50);					
-		c.setAttribute('height',50);
-		c.className = i;
-										
-		
-		c.onmouseover = pickSquare;						
-		c.onmouseout = mouseOut;
-		c.onclick = makeChoice;
-		
-		document.getElementById("tictactoe_board").appendChild(c);		
-		//Make some HTML5 modifications to each canvas
-		var ctx=c.getContext('2d');	
-		
-		ctx.fillStyle='#FFFFFF';							
-		if ( c.getAttribute('col') == '4' || c.getAttribute('col') == '7'){
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(5, 5, 50, 50);
-            } else {
-             	ctx.fillRect(5, 0, 50, 50);
-           	
-            }
-		} else if (c.getAttribute('col') == '1'){								
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(0, 5, 50, 50);
-            } else {
-            	ctx.fillRect(0, 0, 50, 50);
-            }
-		} else {
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(2, 5, 50, 50);
-            } else {
-             	ctx.fillRect(2, 0, 50, 50);
-           	
-            }
+window.onload = function() {
+	for(i = 1; i < 10; i++) {
+		for(j = 1; j < 10; j++) {
+			var c = document.getElementById("row"+i+"_col"+j);
+											
+			c.onmouseover = pickSquare;						
+			c.onmouseout = mouseOut;
+			c.onclick = makeChoice;
+			
+			var ctx=c.getContext('2d');	
+			ctx.fillStyle='#FFFFFF';
+			ctx.fillRect(0, 0, 300, 300);					
 		}
 	}
-	
-
 }
-
-
 
 function mouseOut(){
+	var c = document.getElementById(this.id);
+	var ctx=c.getContext('2d');	
+	ctx.fillStyle='#FFFFFF';			
+	ctx.fillRect(0, 0, 300, 300);	
 
-		var c = document.getElementById(this.id);
-		var ctx=c.getContext('2d');	
-		ctx.fillStyle='#FFFFFF';							
-		if ( c.getAttribute('col') == '4' || c.getAttribute('col') == '7'){
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(5, 5, 50, 50);
-            } else {
-             	ctx.fillRect(5, 0, 50, 50);
-           	
-            }
-		} else if (c.getAttribute('col') == '1'){								
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(0, 5, 50, 50);
-            } else {
-            	ctx.fillRect(0, 0, 50, 50);
-            }
-		} else {
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(2, 5, 50, 50);
-            } else {
-             	ctx.fillRect(2, 0, 50, 50);
-           	
-            }
-		}
+	if(selected != null) {
+		var ctx = selected.getContext('2d');	
+		ctx.fillStyle='#FF0000';
+		ctx.fillRect(0, 0, 300, 300);				
+	}
 }
 
-
-
 function makeChoice(){
-	alert(this.id);
+	if(selected != null) {
+		var ctx = selected.getContext('2d');	
+		ctx.fillStyle='#FFFFFF';			
+		ctx.fillRect(0, 0, 300, 300);
+	}
+
+	selected = document.getElementById(this.id);
+	var ctx = selected.getContext('2d');	
+	ctx.fillStyle='#FF0000';
+	ctx.fillRect(0, 0, 300, 300);	
 }
 
 function pickSquare(){
+	var c = document.getElementById(this.id);
+	var ctx=c.getContext('2d');	
+	ctx.fillStyle='#0278CC';
+	ctx.fillRect(0, 0, 300, 300);	
+}
 
-		var c = document.getElementById(this.id);
-		var ctx=c.getContext('2d');	
-		ctx.fillStyle='#0278CC';							
-		if ( c.getAttribute('col') == '4' || c.getAttribute('col') == '7'){
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(5, 5, 50, 50);
-            } else {
-             	ctx.fillRect(5, 0, 50, 50);
-           	
-            }
-		} else if (c.getAttribute('col') == '1'){								
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(0, 5, 50, 50);
-            } else {
-            	ctx.fillRect(0, 0, 50, 50);
-            }
-		} else {
-			if (c.getAttribute('row') == '4' || c.getAttribute('row') == '7'){
-            	ctx.fillRect(2, 5, 50, 50);
-            } else {
-             	ctx.fillRect(2, 0, 50, 50);
-           	
-            }
-		}
+
+
+//TODO
+//called after square is selected, and number button (to be implented) or number on keyboard is pressed
+function setSquareNumber() {
+	/*
+	if move is over a default placed value then dont paint it
+	else if move has no conflicts then paint number selected
+	else if move has conflicts then highlight conflicting square
+	
+	NOTE: if user has entered a number before, it can be overridden.
+	*/
+}
+
+//TODO
+//generate a complete 2d array of a valid board, and paint several starting numbers
+function generateBoard() {
+	/*
+	1. generate the 2D array
+	2. paint numbers on random squares (or not-so-random)
+	3. Paint the starting squares with faint transparent background (obviously different to user)
+	*/
+
+}
+
+//TODO
+//paints the given number in the given square
+function paintNumber(number, square) {
+	/*
+	square should be validated already, this should be a simple helper function. 
+	*/
+}
+
+//TODO
+//Returns a boolean value. True if the board is complete.
+function isComplete() {
+	/*
+	SHOULD NOT check only against our solution. Possible solution could differ from ours. 
+	JON LEWIS TODO: Research board uniqness. 
+	*/
 }
 

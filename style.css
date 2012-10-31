@@ -2,26 +2,49 @@ body{
 	background-color:#D9F0FF;
 }
 
-#tictactoe_background{
-	/*/margin-top:30px;/*/
+#chunk_r1c1,
+#chunk_r1c2,
+#chunk_r1c3,
+#chunk_r2c1,
+#chunk_r2c2,
+#chunk_r2c3,
+#chunk_r3c1,
+#chunk_r3c2,
+#chunk_r3c3 {
+	margin: 6px 2px 6px 2px; /*TRBL*/
+	width: 160px;
+	height: 150px;
+	display: inline-block;
+}
+
+canvas.square {
+	width: 50px;
+	height: 50px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding: 0px;
+}
+
+#background{
+	margin-top:30px;
 	position:relative;
 	margin-left:auto;
 	margin-right:auto;
-	width: 500px;
-	height:500px;
+	width: 550px;
+	height:530px;
 	border-radius:25px; 
    -moz-border-radius:25px;
 	box-shadow: 10px 10px 5px #888888;
 	background-color:#004996;
 }
 
-#tictactoe_board{
+#board{
 	position:absolute;
-	width:450px; 
-	height:458px;
+	width:520px; 
+	height:500px;
 	margin-left:25px;
 	margin-top:25px;
-	background-color:#000000; 
+	background-color: black;
 	line-height:.8em;
 }
 

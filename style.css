@@ -10,26 +10,26 @@ canvas.square {
 	padding: 0px
 }
 
-#tictactoe_background{
+#background{
 	/*/margin-top:30px;/*/
 	position:relative;
 	margin-left:auto;
 	margin-right:auto;
-	width: 500px;
-	height:500px;
+	width: 550px;
+	height:530px;
 	border-radius:25px; 
    -moz-border-radius:25px;
 	box-shadow: 10px 10px 5px #888888;
 	background-color:#004996;
 }
 
-#tictactoe_board{
+#board{
 	position:absolute;
 	width:500px; 
-	height:500px;
+	height:480px;
 	margin-left:25px;
 	margin-top:25px;
-	background-color: white;
+	background-color: black;
 	line-height:.8em;
 }
 

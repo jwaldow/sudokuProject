@@ -93,9 +93,9 @@ function generateBoard(answerKey) {
 
 
 	if(answerKey){
-		newBoard = compSudoku;
+		newBoard = compSudoku();
 	} else{
-
+		newBoard = compSudoku();
 	}
 	return newBoard;
 }
@@ -139,12 +139,20 @@ function isComplete() {
 	*/
 }
 
-function compSudoku(array) {
+function compSudoku() {
 	newBoard=new Array(9);
 	for(i = 0; i < 9; i++) {
 		newBoard[i]=new Array(9);
 		for(j = 0; j < 9; j++) {
 			newBoard[i][j]=new Array(2);
-			newBoard[i][j][1]=false;
+			newBoard[i][j][0]="A";
+			newBoard[i][j][1]=true;
+		}
+	}
+
+	var shuffledRowPos=new Array(9);
+	for(i=0;i<9;i++){
+		shuffledRowPos[i]=i+1;
+	}
 	return newBoard;
 }

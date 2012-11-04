@@ -140,71 +140,64 @@ function isComplete() {
 }
 
 function compSudoku() { //Generates a valid sudoku
-	var randRow = new Array(9);
-	var newBoard=new Array(9),valid;
-	var currentVal;
+	var answerBoard = new Array(9);
+	for(i=0;i<9;i++){
+		answerBoard[i] = new Array(9);
+	}
+	var guranteedGoodBoard=Array(
+	Array(1,2,3,9,7,8,5,6,4),
+    Array(4,5,6,3,1,2,8,9,7),
+    Array(7,8,9,6,4,5,2,3,1),
+    Array(3,1,2,8,9,7,4,5,6),
+    Array(6,4,5,2,3,1,7,8,9),
+    Array(9,7,8,5,6,4,1,2,3),
+    Array(2,3,1,7,8,9,6,4,5),
+    Array(5,6,4,1,2,3,9,7,8),
+    Array(8,9,7,4,5,6,3,1,2));
+    var answerBoard=shuffle(guranteedGoodBoard,true);
+	var newBoard=new Array(9);
 	for(i = 0; i < 9; i++) {
 		newBoard[i]=new Array(9);
 		for(j = 0; j < 9; j++) {
-			newBoard[i][j]=new Array(2);
-			newBoard[i][j][0]="_";
+			newBoard[i][j]=new Array(3);
+			newBoard[i][j][0]=answerBoard[i][j];
 			newBoard[i][j][1]=true;
 		}
 	}
-
-	for(i=0;i<9;i++){
-		for(j=0;j<9;j++){
-			for(n=0;n<9;n++){
-				randRow[n]=n+1;
-				if(newBoard[i][j][0]==randRow[n]){
-					randRow.pop();
-				}
-			}
-			randRow=shuffle(randRow);
-			for(a=0;a<9;a++){
-				currentVal=newBoard[i][a][0];
-				if(randRow.indexOf(currentVal)>=0){
-					delete randRow[randRow.indexOf(currentVal)];
-				}
-			}
-			for(a=0;a<9;a++){
-				currentVal=newBoard[a][j][0];
-				if(randRow.indexOf(currentVal)>=0){
-					delete randRow[randRow.indexOf(currentVal)];
-				}
-			}
-
-			while(randRow.length>0&&randRow[0]==null){
-				randRow.shift();
-			}
-			if(randRow.length==0){
-				if(i>0){
-					i--;
-				} else {
-					j--;
-					i=8;
-				}
-			} else {
-				newBoard[i][j][0]=randRow[0];
-			}
+	for(j=0;j<9;j++){
+		for(i=0;i<9;i++){
 		}
 	}
 	return newBoard;
 }
-function shuffle(array) {
-  var m = array.length, t, i;
-
-  // While there remain elements to shuffle…
-  while (m) {
-
-    // Pick a remaining element…
-    i = Math.floor(Math.random() * m--);
-
-    // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-
-  return array;
+function shuffle(array,callAgain){//Shuffles the puzzle. Put in "true" if calling from outside
+	holderRow=new Array(9);
+	for(i=0;i<3;i++)
+		for(j=0;j<50;j++){
+			n=Math.floor(Math.random() * 3);
+			if(n!=0){
+				for(k=0;k<9;k++){
+					holderRow[k]=array[i*3+n][k];
+					array[i*3+n][k]=array[i*3][k];
+					array[i*3][k]=holderRow[k];
+				} 
+			} else {
+				j--;
+			}
+		}
+	if(callAgain==true){
+		array=shuffleAgain(array);
+	}
+	return array;
+}
+function shuffleAgain(array){//Sub-function of shuffle. Flips rows for columns and shuffles again.
+	newArray= new Array(9);
+	for(i=0;i<9;i++){
+		newArray[i]=new Array(9);
+		for(j=0;j<9;j++){
+			newArray[i][j]=array[j][i];
+		}
+	}
+	newArray=shuffle(newArray,false);
+	return newArray;
 }

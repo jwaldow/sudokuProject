@@ -4,7 +4,7 @@ window.onload = function() {
 	for(i = 1; i < 10; i++) {
 		for(j = 1; j < 10; j++) {
 			var c = document.getElementById("row"+i+"_col"+j);
-											
+			
 			c.onmouseover = pickSquare;
 			c.onmouseout = mouseOut;
 			c.onclick = makeChoice;
@@ -19,14 +19,16 @@ window.onload = function() {
 
 function mouseOut(){
 	var c = document.getElementById(this.id);
-	var ctx=c.getContext('2d');	
+	var ctx=c.getContext('2d');
 	ctx.fillStyle='#FFFFFF';
 	ctx.fillRect(0, 0, 300, 300);
+	paintNumber(c);
 
 	if(selected != null) {
 		var ctx = selected.getContext('2d');
 		ctx.fillStyle='#FF9999';
 		ctx.fillRect(0, 0, 300, 300);
+		paintNumber(selected);
 	}
 }
 
@@ -35,12 +37,14 @@ function makeChoice(){
 		var ctx = selected.getContext('2d');
 		ctx.fillStyle='#FFFFFF';
 		ctx.fillRect(0, 0, 300, 300);
+		paintNumber(selected);
 	}
 
 	selected = document.getElementById(this.id);
 	var ctx = selected.getContext('2d');
 	ctx.fillStyle='#FF9999';
 	ctx.fillRect(0, 0, 300, 300);
+	paintNumber(selected);
 }
 
 function pickSquare(){
@@ -48,6 +52,7 @@ function pickSquare(){
 	var ctx=c.getContext('2d');
 	ctx.fillStyle='#9999FF';
 	ctx.fillRect(0, 0, 300, 300);
+	paintNumber(c);
 }
 
 
@@ -82,8 +87,12 @@ function paintNumber(square) {
 	square should be validated already, this should be a simple helper function. 
 	*/
 	//var c = document.getElementById(this.id);
-	//Getting its location
+	//Getting its location.
+	//It's a stripper. Give it a dollar.
 	name=square.getAttribute('id');
+	nameArray=name.split("_");
+	name=nameArray[0][3]+nameArray[1][3];
+
 	var ctx=square.getContext('2d');
 	ctx.font = 'Bold 100pt sans-serif';
 	ctx.textAlign = 'center';

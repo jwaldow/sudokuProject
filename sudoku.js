@@ -1,5 +1,8 @@
 var selected = null;
 
+var sudokuAnswer = generateBoard(true); //This is...the matrix.
+var sudoku=sudokuAnswer;
+
 window.onload = function() {
 	for(i = 1; i < 10; i++) {
 		for(j = 1; j < 10; j++) {
@@ -71,13 +74,22 @@ function setSquareNumber() {
 
 //TODO
 //generate a complete 2d array of a valid board, and paint several starting numbers
-function generateBoard() {
+function generateBoard(answerKey) {
 	/*
 	1. generate the 2D array
 	2. paint numbers on random squares (or not-so-random)
 	3. Paint the starting squares with faint transparent background (obviously different to user)
 	*/
-
+	var newBoard = new Array(9);
+	for(i = 0; i < 9; i++) {
+		newBoard[i] = new Array(9);
+		for(j = 0; j < 9; j++) {
+			newBoard[i][j] = new Array(2);
+			newBoard[i][j][0]=i+""+j;
+			newBoard[i][j][1]=((j%2)==1^i%2==1);
+		}
+	}
+	return newBoard;
 }
 
 //TODO
@@ -89,14 +101,22 @@ function paintNumber(square) {
 	//var c = document.getElementById(this.id);
 	//Getting its location.
 	//It's a stripper. Give it a dollar.
+
+	//Apparently, "Your[my] stuff is purdy."
 	name=square.getAttribute('id');
 	nameArray=name.split("_");
-	name=nameArray[0][3]+nameArray[1][3];
+	name=sudoku[nameArray[0][3]-1][nameArray[1][3]-1][0];
 
 	var ctx=square.getContext('2d');
 	ctx.font = 'Bold 100pt sans-serif';
 	ctx.textAlign = 'center';
-	ctx.fillStyle='#000000';
+
+	if(sudoku[nameArray[0][3]-1][nameArray[1][3]-1][1]){
+		ctx.fillStyle='#00FF00';
+	} else {
+		ctx.fillStyle='#111111';
+	}
+
 	ctx.fillText(name,150,125);
 }
 
@@ -109,3 +129,13 @@ function isComplete() {
 	*/
 }
 
+function arrayShuffle (array, random) { //Fisher-Yates algorithm.
+  var i = array.length, j, swap;
+  while (--i) {
+    j = (random ? random() : Math.random()) * (i + 1) | 0;
+    swap = array[i];
+    array[i] = array[j];
+    array[j] = swap;
+  }
+  return array;
+}

@@ -139,19 +139,58 @@ function isComplete() {
 	*/
 }
 
-function compSudoku() {
-	newBoard=new Array(9);
+function compSudoku() { //Generates a valid sudoku
+	var randRow = new Array(9);
+	var newBoard=new Array(9),valid;
+	var randVar;
 	for(i = 0; i < 9; i++) {
 		newBoard[i]=new Array(9);
 		for(j = 0; j < 9; j++) {
 			newBoard[i][j]=new Array(2);
-			newBoard[i][j][0]="0";
+			newBoard[i][j][0]="_";
 			newBoard[i][j][1]=true;
 		}
 	}
-	var validRow=false;
-	for(i=0;i<9;i++){
-		
+
+	for(j=0;j<9;j++){
+		for(k=0;k<9;k++){
+			for(n=0;n<9;n++){
+				randRow[n]=n+1;
+			}
+			randRow=shuffle(randRow);
+			for(a=0;a<j;a++){
+				if(newBoard[a][k][0]==randRow[randRow.length-1]){
+					randRow.pop();
+				}
+			}
+			for(a=0;a<k;a++){
+				if(newBoard[j][a][0]==randRow[randRow.length-1]){
+					randRow.pop();
+				}
+			}
+			if(randRow.length>0){
+				newBoard[j][k][0]=randRow[randRow.length-1];
+			}else{
+				newBoard[j][k][0]="A";
+			}
+		}
 	}
 	return newBoard;
+}
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
 }

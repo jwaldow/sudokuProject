@@ -7,8 +7,8 @@ var mouseHover = '#FFEC73';	//No comment needed.
 var mouseClicked = '#FFDD00';
 var emptyBG = '#EDEDED';
 
-var sudokuAnswer = generateBoard(true); //This is...the matrix.
-var sudoku=sudokuAnswer;
+var sudokuAnswer = generateBoard(); //This is...the matrix.
+var sudoku= generateUserBoard(sudokuAnswer);
 
 window.onload = function() {
 	for(i = 1; i < 10; i++) {
@@ -69,6 +69,7 @@ function pickSquare(){
 
 //TODO
 //called after square is selected, and number button (to be implented) or number on keyboard is pressed
+//Easiest way to do this would be a keypress after the square is selected.
 function setSquareNumber() {
 	/*
 	if move is over a default placed value then dont paint it
@@ -81,7 +82,7 @@ function setSquareNumber() {
 
 //TODO
 //generate a complete 2d array of a valid board, and paint several starting numbers
-function generateBoard(answerKey) {
+function generateBoard() {
 	/*
 	1. generate the 2D array
 	2. paint numbers on random squares (or not-so-random)
@@ -89,57 +90,6 @@ function generateBoard(answerKey) {
 	*/
 
 	//[row][column][Is computer generated]
-
-
-
-	if(answerKey){
-		newBoard = compSudoku();
-	} else{
-		newBoard = compSudoku();
-	}
-	return newBoard;
-}
-
-//TODO
-//paints the square's number
-function paintNumber(square) {
-	/*
-	square should be validated already, this should be a simple helper function. 
-	*/
-	//var c = document.getElementById(this.id);
-	//Getting its location.
-	//It's a stripper. Give it a dollar.
-
-	//Apparently, "Your[my] stuff is purdy."
-	name=square.getAttribute('id');
-	nameArray=name.split("_");
-	name=sudoku[nameArray[0][3]-1][nameArray[1][3]-1][0];
-
-	var ctx=square.getContext('2d');
-	ctx.textAlign = 'center';
-
-	if(sudoku[nameArray[0][3]-1][nameArray[1][3]-1][1]){ //Computer generated = true
-		ctx.font = 'Bold 100pt sans-serif';
-		ctx.fillStyle=compGenNum;
-		ctx.fillText(name,150,125);
-	} else {
-		ctx.font = 'Bold Italic 90pt sans-serif';
-		ctx.fillStyle=userGenNum;
-		ctx.fillText(name,150,120);
-	}
-}
-
-//TODO
-//Returns a boolean value. True if the board is complete.
-function isComplete() {
-	/*
-	SHOULD NOT check only against our solution. Possible solution could differ from ours. 
-	JON LEWIS TODO: Research board uniqness. 
-		DONE: Board solutions are unique. Needs only to check against our solutions.
-	*/
-}
-
-function compSudoku() { //Generates a valid sudoku
 	var answerBoard = new Array(9);
 	for(i=0;i<9;i++){
 		answerBoard[i] = new Array(9);
@@ -170,6 +120,52 @@ function compSudoku() { //Generates a valid sudoku
 	}
 	return newBoard;
 }
+
+//TODO
+//Replace some of the squares' values with blanks, change the third portion of the array [i][j][0] to "false" to indicate it's a user-entered square.
+function generateUserBoard(board){
+	return board;
+}
+
+//TODO
+//paints the square's number
+function paintNumber(square) {
+	/*
+	square should be validated already, this should be a simple helper function. 
+	*/
+	//var c = document.getElementById(this.id);
+	//Getting its location.
+
+	//It's a stripper. Give it a dollar.
+	name=square.getAttribute('id');
+	nameArray=name.split("_");
+	name=sudoku[nameArray[0][3]-1][nameArray[1][3]-1][0];
+
+	var ctx=square.getContext('2d');
+	ctx.textAlign = 'center';
+
+	if(sudoku[nameArray[0][3]-1][nameArray[1][3]-1][1]){ //Computer generated = true
+		ctx.font = 'Bold 100pt sans-serif';
+		ctx.fillStyle=compGenNum;
+		ctx.fillText(name,150,125);
+	} else {
+		ctx.font = 'Bold Italic 90pt sans-serif';
+		ctx.fillStyle=userGenNum;
+		ctx.fillText(name,150,120);
+	}
+}
+
+//TODO
+//Returns a boolean value. True if the board is complete.
+function isComplete() {
+	/*
+	SHOULD NOT check only against our solution. Possible solution could differ from ours. 
+	JON LEWIS TODO: Research board uniqness. 
+		DONE: Board solutions are unique. Needs only to check against our solution.
+	*/
+	return done;
+}
+
 function shuffle(array,callAgain){//Shuffles the puzzle. Put in "true" if calling from outside
 	holderRow=new Array(9);
 	for(i=0;i<3;i++)

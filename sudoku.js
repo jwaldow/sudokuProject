@@ -5,13 +5,14 @@ window.onload = function() {
 		for(j = 1; j < 10; j++) {
 			var c = document.getElementById("row"+i+"_col"+j);
 											
-			c.onmouseover = pickSquare;						
+			c.onmouseover = pickSquare;
 			c.onmouseout = mouseOut;
 			c.onclick = makeChoice;
 			
-			var ctx=c.getContext('2d');	
+			var ctx=c.getContext('2d');
 			ctx.fillStyle='#FFFFFF';
-			ctx.fillRect(0, 0, 300, 300);					
+			ctx.fillRect(0, 0, 300, 300);
+			paintNumber(c);
 		}
 	}
 }
@@ -19,34 +20,34 @@ window.onload = function() {
 function mouseOut(){
 	var c = document.getElementById(this.id);
 	var ctx=c.getContext('2d');	
-	ctx.fillStyle='#FFFFFF';			
-	ctx.fillRect(0, 0, 300, 300);	
+	ctx.fillStyle='#FFFFFF';
+	ctx.fillRect(0, 0, 300, 300);
 
 	if(selected != null) {
-		var ctx = selected.getContext('2d');	
+		var ctx = selected.getContext('2d');
 		ctx.fillStyle='#FF9999';
-		ctx.fillRect(0, 0, 300, 300);				
+		ctx.fillRect(0, 0, 300, 300);
 	}
 }
 
 function makeChoice(){
 	if(selected != null) {
-		var ctx = selected.getContext('2d');	
-		ctx.fillStyle='#FFFFFF';			
+		var ctx = selected.getContext('2d');
+		ctx.fillStyle='#FFFFFF';
 		ctx.fillRect(0, 0, 300, 300);
 	}
 
 	selected = document.getElementById(this.id);
-	var ctx = selected.getContext('2d');	
+	var ctx = selected.getContext('2d');
 	ctx.fillStyle='#FF9999';
-	ctx.fillRect(0, 0, 300, 300);	
+	ctx.fillRect(0, 0, 300, 300);
 }
 
 function pickSquare(){
 	var c = document.getElementById(this.id);
-	var ctx=c.getContext('2d');	
+	var ctx=c.getContext('2d');
 	ctx.fillStyle='#9999FF';
-	ctx.fillRect(0, 0, 300, 300);	
+	ctx.fillRect(0, 0, 300, 300);
 }
 
 
@@ -75,17 +76,19 @@ function generateBoard() {
 }
 
 //TODO
-//paints the given number in the given square
-function paintNumber(number, square) {
+//paints the square's number
+function paintNumber(square) {
 	/*
 	square should be validated already, this should be a simple helper function. 
 	*/
 	//var c = document.getElementById(this.id);
+	//Getting its location
+	name=square.getAttribute('id');
 	var ctx=square.getContext('2d');
 	ctx.font = 'Bold 100pt sans-serif';
 	ctx.textAlign = 'center';
 	ctx.fillStyle='#000000';
-	ctx.fillText(number,150,125);
+	ctx.fillText(name,150,125);
 }
 
 //TODO

@@ -24,7 +24,7 @@ function mouseOut(){
 
 	if(selected != null) {
 		var ctx = selected.getContext('2d');	
-		ctx.fillStyle='#FF0000';
+		ctx.fillStyle='#FF9999';
 		ctx.fillRect(0, 0, 300, 300);				
 	}
 }
@@ -38,14 +38,14 @@ function makeChoice(){
 
 	selected = document.getElementById(this.id);
 	var ctx = selected.getContext('2d');	
-	ctx.fillStyle='#FF0000';
+	ctx.fillStyle='#FF9999';
 	ctx.fillRect(0, 0, 300, 300);	
 }
 
 function pickSquare(){
 	var c = document.getElementById(this.id);
 	var ctx=c.getContext('2d');	
-	ctx.fillStyle='#0278CC';
+	ctx.fillStyle='#9999FF';
 	ctx.fillRect(0, 0, 300, 300);	
 }
 
@@ -80,6 +80,12 @@ function paintNumber(number, square) {
 	/*
 	square should be validated already, this should be a simple helper function. 
 	*/
+	//var c = document.getElementById(this.id);
+	var ctx=square.getContext('2d');
+	ctx.font = 'Bold 100pt sans-serif';
+	ctx.textAlign = 'center';
+	ctx.fillStyle='#000000';
+	ctx.fillText(number,150,125);
 }
 
 //TODO

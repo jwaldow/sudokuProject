@@ -1,5 +1,9 @@
 body{
-	background-color:#D9F0FF;
+	background-color:#5FA92A;
+}
+
+h1{
+	color: #033E6B;
 }
 
 #chunk_r1c1,
@@ -31,18 +35,19 @@ canvas.square {
 	margin-left:auto;
 	margin-right:auto;
 	width: 550px;
-	height:530px;
+	height:550px;
 	border-radius:25px; 
    -moz-border-radius:25px;
-	box-shadow: 10px 10px 5px #888888;
-	background-color:#004996;
+	box-shadow: 10px 10px 5px #024C68;
+	background-color:#0776A0;
+	margin-bottom:30px;
 }
 
 #board{
 	position:absolute;
-	width:520px; 
+	width:510px; 
 	height:500px;
-	margin-left:25px;
+	margin-left:20px;
 	margin-top:25px;
 	background-color: black;
 	line-height:.8em;

@@ -89,16 +89,11 @@ function generateBoard(answerKey) {
 	*/
 
 	//[row][column][Is computer generated]
+
+
+
 	if(answerKey){
-		var newBoard = new Array(9);
-		for(i = 0; i < 9; i++) {
-			newBoard[i] = new Array(9);
-			for(j = 0; j < 9; j++) {
-				newBoard[i][j] = new Array(2);
-				newBoard[i][j][0]=i;
-				newBoard[i][j][1]=((j%2)==1^i%2==1);
-			}
-		}
+		newBoard = compSudoku;
 	} else{
 
 	}
@@ -140,16 +135,16 @@ function isComplete() {
 	/*
 	SHOULD NOT check only against our solution. Possible solution could differ from ours. 
 	JON LEWIS TODO: Research board uniqness. 
+		DONE: Board solutions are unique. Needs only to check against our solutions.
 	*/
 }
 
-function arrayShuffle (array, random) { //Fisher-Yates algorithm.
-  var i = array.length, j, swap;
-  while (--i) {
-    j = (random ? random() : Math.random()) * (i + 1) | 0;
-    swap = array[i];
-    array[i] = array[j];
-    array[j] = swap;
-  }
-  return array;
+function compSudoku(array) {
+	newBoard=new Array(9);
+	for(i = 0; i < 9; i++) {
+		newBoard[i]=new Array(9);
+		for(j = 0; j < 9; j++) {
+			newBoard[i][j]=new Array(2);
+			newBoard[i][j][1]=false;
+	return newBoard;
 }

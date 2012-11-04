@@ -142,7 +142,7 @@ function isComplete() {
 function compSudoku() { //Generates a valid sudoku
 	var randRow = new Array(9);
 	var newBoard=new Array(9),valid;
-	var randVar;
+	var currentVal;
 	for(i = 0; i < 9; i++) {
 		newBoard[i]=new Array(9);
 		for(j = 0; j < 9; j++) {
@@ -152,26 +152,40 @@ function compSudoku() { //Generates a valid sudoku
 		}
 	}
 
-	for(j=0;j<9;j++){
-		for(k=0;k<9;k++){
+	for(i=0;i<9;i++){
+		for(j=0;j<9;j++){
 			for(n=0;n<9;n++){
 				randRow[n]=n+1;
+				if(newBoard[i][j][0]==randRow[n]){
+					randRow.pop();
+				}
 			}
 			randRow=shuffle(randRow);
-			for(a=0;a<j;a++){
-				if(newBoard[a][k][0]==randRow[randRow.length-1]){
-					randRow.pop();
+			for(a=0;a<9;a++){
+				currentVal=newBoard[i][a][0];
+				if(randRow.indexOf(currentVal)>=0){
+					delete randRow[randRow.indexOf(currentVal)];
 				}
 			}
-			for(a=0;a<k;a++){
-				if(newBoard[j][a][0]==randRow[randRow.length-1]){
-					randRow.pop();
+			for(a=0;a<9;a++){
+				currentVal=newBoard[a][j][0];
+				if(randRow.indexOf(currentVal)>=0){
+					delete randRow[randRow.indexOf(currentVal)];
 				}
 			}
-			if(randRow.length>0){
-				newBoard[j][k][0]=randRow[randRow.length-1];
-			}else{
-				newBoard[j][k][0]="A";
+
+			while(randRow.length>0&&randRow[0]==null){
+				randRow.shift();
+			}
+			if(randRow.length==0){
+				if(i>0){
+					i--;
+				} else {
+					j--;
+					i=8;
+				}
+			} else {
+				newBoard[i][j][0]=randRow[0];
 			}
 		}
 	}

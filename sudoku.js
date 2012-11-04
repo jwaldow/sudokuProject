@@ -145,14 +145,13 @@ function compSudoku() {
 		newBoard[i]=new Array(9);
 		for(j = 0; j < 9; j++) {
 			newBoard[i][j]=new Array(2);
-			newBoard[i][j][0]="A";
+			newBoard[i][j][0]="0";
 			newBoard[i][j][1]=true;
 		}
 	}
-
-	var shuffledRowPos=new Array(9);
+	var validRow=false;
 	for(i=0;i<9;i++){
-		shuffledRowPos[i]=i+1;
+		
 	}
 	return newBoard;
 }

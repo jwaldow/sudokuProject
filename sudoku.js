@@ -14,6 +14,9 @@ var default_value = 'lightgrey';
 var sudokuAnswer = generateBoard(); //This is...the matrix.
 var sudoku= generateUserBoard(sudokuAnswer);
 
+document.onkeypress = onKeyPress;
+if (document.layers) document.captureEvents(Event.KEYPRESS);
+
 window.onload = function() {
 	for (i = 1; i < 10; i++) {
 		for (j = 1; j < 10; j++) {
@@ -32,8 +35,7 @@ window.onload = function() {
 				ctx.fillRect(0, 0, 300, 300);
 				c.setAttribute("is_default", "true");
 				c.setAttribute("value",paintNumber(c));
-			}
-			
+			}			
 		}
 	}
 }
@@ -82,6 +84,15 @@ function mouseOver(){
 	}
 }
 
+function onKeyPress(event) {
+	var guess = (('charCode' in event) ? event.charCode : event.keyCode) - 48;
+	if (selected != null && guess >= 1 && guess <= 9) {
+		setSquareNumber(guess, 
+				getIFromId(selected.getAttribute("id")), 
+				getJFromId(selected.getAttribute("id")));
+	}
+}
+
 function getId(i, j) {
 	return "row" + i + "_col" + j
 }
@@ -91,32 +102,34 @@ function getId(i, j) {
 //Easiest way to do this would be a keypress after the square is selected.
 function setSquareNumber(guess, i, j) {
 	var conflict = getConflictingSquare(guess, i, j);
-	if (conflict == null) {
+	if (conflict != null) {
 		alert("conflict!!!");
-		//highlightRed(conflict);
-	} else if (getElementById(getId(i, j)).getAttribute("is_default") == "false") {
+	} else if (document.getElementById(getId(i, j)).getAttribute("is_default") == "false") {
 		alert("no conflict");
-		//paintNumber(guess, i, j);
 	}
 }
 
 function getConflictingSquare(guess, i, j) {
-	var squaresInChunk = getElementById(getId(i, col)).getParent().childNodes;
-	for(square in squaresInChunk) {
+	var squaresInChunk = document.getElementById(getId(i, j)).parentNode.childNodes;
+	
+	for(s = 0; s < squaresInChunk.size; s++) {
 		if (square.getAttribute("value") == guess) {
+			alert("conflict in chunk");
 			return square;
 		}
 	}
 
 	for(col = 1; col<10; col++) {
-		if (getElementById(getId(i, col)).getAttribute("value") == guess) {
-			return getElementById(getId(i, col));
+		if (document.getElementById(getId(i, col)).getAttribute("value") == guess) {
+			alert("conflict in i");
+			return document.getElementById(getId(i, col));
 		}
 	}
 
 	for(row = 1; row<10; row++) {
-		if (getElementById(getId(row, j)).getAttribute("value") == guess) {
-			return getElementById(getId(row, j));
+		if (document.getElementById(getId(row, j)).getAttribute("value") == guess) {
+			alert("conflict in j");
+			return document.getElementById(getId(row, j));
 		}
 	}
 }
@@ -158,6 +171,14 @@ function generateBoard() {
 //Replace some of the squares' values with blanks, change the third portion of the array [i][j][0] to "false" to indicate it's a user-entered square.
 function generateUserBoard(board){
 	return board;
+}
+
+function getIFromId(id) {
+	return id.split("_")[0][3]-1;
+}
+
+function getJFromId(id) {
+	return id.split("_")[0][3]-1;
 }
 
 //TODO

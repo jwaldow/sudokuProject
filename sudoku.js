@@ -50,25 +50,26 @@ function mouseOut(){
 			var ctx = selected.getContext('2d');
 			ctx.fillStyle=mouseClicked;
 			ctx.fillRect(0, 0, 300, 300);
-			paintNumber(selected);
+			//paintNumber(selected);
 		}
 	}
 }
 
 function onClickSquare() {
-	if (selected != null) {
+	if(this.getAttribute("is_default")!="true"){
+		if (selected != null) {
+			var ctx = selected.getContext('2d');
+			ctx.fillStyle=emptyBG;
+			ctx.fillRect(0, 0, 300, 300);
+			//paintNumber(selected);
+		}
+	    selected = document.getElementById(this.id);
 		var ctx = selected.getContext('2d');
-		ctx.fillStyle=emptyBG;
+		ctx.fillStyle=mouseClicked;
 		ctx.fillRect(0, 0, 300, 300);
-		paintNumber(selected);
+		//paintNumber(selected);
+		
 	}
-
-	selected = document.getElementById(this.id);
-	alert("value "+selected.getAttribute("is_default"));
-	var ctx = selected.getContext('2d');
-	ctx.fillStyle=mouseClicked;
-	ctx.fillRect(0, 0, 300, 300);
-	paintNumber(selected);
 }
 
 function mouseOver(){
@@ -77,7 +78,7 @@ function mouseOver(){
 		var ctx=c.getContext('2d');
 		ctx.fillStyle=mouseHover;
 		ctx.fillRect(0, 0, 300, 300);
-		paintNumber(c);
+		//paintNumber(c);
 	}
 }
 

@@ -143,7 +143,7 @@ function revertAlert(square){
 		ctx.fillStyle='lightgrey';
 		ctx.fillRect(0,0,300,300);
 	}else{
-		ctx.fillStyle=emptyBG;
+		ctx.fillStyle=EMPTY;
 		ctx.fillRect(0,0,300,300);
 	}
 		ctx.textAlign = 'center';
@@ -318,7 +318,7 @@ function reset(){
 			c.onmouseout = mouseOut;
 			c.onclick = onClickSquare;
 			var ctx=c.getContext('2d');
-			ctx.fillStyle=emptyBG;
+			ctx.fillStyle=EMPTY;
 			ctx.fillRect(0, 0, 300, 300);
 			//sets up the pattern to draw the numbers
 			if((i % 3 == j % 5) || (((i * j) % 2) == 1)) {

@@ -43,30 +43,39 @@ function mouseOut(){
 	var ctx=c.getContext('2d');
 	if(c.getAttribute("is_default")!="true"){
 		ctx.fillStyle=emptyBG;
-		ctx.fillRect(0, 0, 300, 300);
-		//paintNumber(c);
+		ctx.fillRect(0,0,300,300);
+		if(selected != null){
+			stx = selected.getContext('2d');
+			stx.fillStyle=mouseClicked;
+			stx.fillRect(0,0,300,300);
+			stx.fillStyle='#000000';
+			stx.textAlign = 'center';
+			stx.font = 'Bold 100pt sans-serif';
+			stx.fillText(selected.getAttribute("value"), 150, 125);
 
-		if (selected != null) {
-			var ctx = selected.getContext('2d');
-			ctx.fillStyle=mouseClicked;
-			ctx.fillRect(0, 0, 300, 300);
-			//paintNumber(selected);
 		}
 	}
 }
 
 function onClickSquare() {
 	if(this.getAttribute("is_default")!="true"){
+		//paintUserNumber(this, 4);
 		if (selected != null) {
 			var ctx = selected.getContext('2d');
 			ctx.fillStyle=emptyBG;
 			ctx.fillRect(0, 0, 300, 300);
+			ctx.textAlign = 'center';
+			ctx.font = 'Bold 100pt sans-serif';
+			ctx.fillStyle='#000000';
+			ctx.fillText(selected.getAttribute("value"),150,125);
 			//paintNumber(selected);
 		}
 	    selected = document.getElementById(this.id);
 		var ctx = selected.getContext('2d');
 		ctx.fillStyle=mouseClicked;
 		ctx.fillRect(0, 0, 300, 300);
+		paintUserNumber(this, 4);
+		
 		//paintNumber(selected);
 		
 	}
@@ -76,8 +85,15 @@ function mouseOver(){
 	var c = document.getElementById(this.id);
 	if(c.getAttribute("is_default")!="true"){
 		var ctx=c.getContext('2d');
-		ctx.fillStyle=mouseHover;
-		ctx.fillRect(0, 0, 300, 300);
+		if(c.getAttribute("value")!=null){
+				ctx.textAlign = 'center';
+				ctx.font = 'Bold 100pt sans-serif';
+				ctx.fillStyle=mouseHover;
+				ctx.fillText(c.getAttribute("value"),150,125);	
+		} else {
+			ctx.fillStyle=mouseHover;
+			ctx.fillRect(0, 0, 300, 300);
+		}
 		//paintNumber(c);
 	}
 }
@@ -98,6 +114,19 @@ function setSquareNumber(guess, i, j) {
 		alert("no conflict");
 		//paintNumber(guess, i, j);
 	}
+}
+
+//Takes a square and a number and then prints it out
+function paintUserNumber(square, number){
+	//var c = document.getElementById(this.id);
+
+	var ctx=square.getContext('2d');
+	ctx.textAlign = 'center';
+	ctx.font = 'Bold 100pt sans-serif';
+	ctx.fillStyle='#000000';
+	//ctx.fillRect(0, 0, 300, 300);
+	ctx.fillText(number,150,125);
+	square.setAttribute("value", number);
 }
 
 function getConflictingSquare(guess, i, j) {
@@ -169,7 +198,6 @@ function paintNumber(square) {
 	//var c = document.getElementById(this.id);
 	//Getting its location.
 
-	//It's a stripper. Give it a dollar.
 	name=square.getAttribute('id');
 	nameArray=name.split("_");
 	name=sudoku[nameArray[0][3]-1][nameArray[1][3]-1][CORRECT_VALUE];

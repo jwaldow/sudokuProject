@@ -75,14 +75,34 @@ function getId(i, j) {
 //TODO
 //called after square is selected, and number button (to be implented) or number on keyboard is pressed
 //Easiest way to do this would be a keypress after the square is selected.
-function setSquareNumber() {
-	/*
-	if move is over a default placed value then dont paint it
-	else if move has no conflicts then paint number selected
-	else if move has conflicts then highlight conflicting square
-	
-	NOTE: if user has entered a number before, it can be overridden.
-	*/
+function setSquareNumber(guess, i, j) {
+	var conflict //= getConflictingSquare(guess, i, j);
+	if (conflict != null)
+		//highlightRed(conflict);
+	} else {
+		//paintNumber(guess, i, j);
+	}
+}
+
+function getConflictingSquare(guess, i, j) {
+	var squaresInChunk = getElementById(getId(i, col)).getParent().childNodes;
+	for(square in squaresInChunk) {
+		if (square.getAttribute("value") == guess) {
+			return square;
+		}
+	}
+
+	for(col = 1; col<10; col++) {
+		if (getElementById(getId(i, col)).getAttribute("value") == guess) {
+			return getElementById(getId(i, col));
+		}
+	}
+
+	for(row = 1; row<10; row++) {
+		if (getElementById(getId(row, j)).getAttribute("value") == guess) {
+			return getElementById(getId(row, j));
+		}
+	}
 }
 
 //generate a complete 2d array of a valid board, and paint several starting numbers

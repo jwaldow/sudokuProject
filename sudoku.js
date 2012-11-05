@@ -116,7 +116,6 @@ function setSquareNumber(guess, i, j) {
 	var conflict = getConflictingSquare(guess, i, j);
 	if (conflict != null) {
 	} else if (document.getElementById(getId(i, j)).getAttribute("is_default") == "false") {
-		alert("no conflict");
 	}
 }
 
@@ -137,10 +136,8 @@ function getConflictingSquare(guess, i, j) {
 
 	var chunk = document.getElementById(getId(i, j)).parentNode.childNodes;
 	for(s = 0; s < chunk.length; s++) {
-		//alert(s+": "+chunk[s]);
 		if(chunk[s].tagName == "canvas" || chunk[s].tagName == "CANVAS") {
 			if (chunk[s].getAttribute("value") == guess) {
-				alert("conflict in chunk");
 				return chunk[s];
 			}
 		}
@@ -148,14 +145,12 @@ function getConflictingSquare(guess, i, j) {
 
 	for(col = 1; col<10; col++) {
 		if (document.getElementById(getId(i, col)).getAttribute("value") == guess) {
-			alert("conflict in i: i="+i+" j="+j+" col="+col+" guess="+guess);
 			return document.getElementById(getId(i, col));
 		}
 	}
 
 	for(row = 1; row<10; row++) {
 		if (document.getElementById(getId(row, j)).getAttribute("value") == guess) {
-			alert("conflict in j: i="+i+" j="+j+" row="+row+" guess="+guess);
 			return document.getElementById(getId(row, j));
 		}
 	}

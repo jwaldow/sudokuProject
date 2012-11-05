@@ -76,11 +76,11 @@ function getId(i, j) {
 //called after square is selected, and number button (to be implented) or number on keyboard is pressed
 //Easiest way to do this would be a keypress after the square is selected.
 function setSquareNumber(guess, i, j) {
-	var conflict //= getConflictingSquare(guess, i, j);
-	if (conflict != null)
-		//highlightRed(conflict);
-	} else {
-		//paintNumber(guess, i, j);
+	var conflict = getConflictingSquare(guess, i, j);
+	if (conflict == null)
+		highlightRed(conflict);
+	} else if (getElementById(getId(i, j)).getAttribute("is_default") == "false") {
+		paintNumber(guess, i, j);
 	}
 }
 

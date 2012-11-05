@@ -116,9 +116,33 @@ function getId(i, j) {
 function setSquareNumber(guess, i, j) {
 	var conflict = getConflictingSquare(guess, i, j);
 	if (conflict != null) {
+		var ctx = conflict.getContext('2d');
+		ctx.fillStyle='#FF0000';
+		ctx.fillRect(0,0,300,300);
+		ctx.textAlign = 'center';
+		ctx.font = 'Bold 100pt sans-serif';
+		ctx.fillStyle='#000000';
+		ctx.fillText(conflict.getAttribute("value"), 150, 125);
+		setTimeout(function(){revertAlert(conflict)}, 3000);
 	} else if (document.getElementById(getId(i, j)).getAttribute("is_default") == "false") {
 		alert("no conflict");
 	}
+}
+
+function revertAlert(square){
+	//alert("hello world");
+	var ctx = square.getContext('2d');
+	if(square.getAttribute("is_default")=="true"){
+		ctx.fillStyle='lightgrey';
+		ctx.fillRect(0,0,300,300);
+	}else{
+		ctx.fillStyle=emptyBG;
+		ctx.fillRect(0,0,300,300);
+	}
+		ctx.textAlign = 'center';
+		ctx.font = 'Bold 100pt sans-serif';
+		ctx.fillStyle='#000000';
+		ctx.fillText(square.getAttribute("value"), 150, 125);
 }
 
 //Takes a square and a number and then prints it out
@@ -137,12 +161,12 @@ function paintUserNumber(square, number){
 function getConflictingSquare(guess, i, j) {
 
 	var chunck = document.getElementById(getId(i, j)).parentNode;
-	for(s = 0; s < squaresInChunk.length; s++) {
-		if (squaresInChunk[s].getAttribute("value") == guess) {
-			alert("conflict in chunk");
-			return squaresInChunk[s];
-		}
-	}
+	// for(s = 0; s < squaresInChunk.length; s++) {
+	// 	if (squaresInChunk[s].getAttribute("value") == guess) {
+	// 		alert("conflict in chunk");
+	// 		return squaresInChunk[s];
+	// 	}
+	// }
 
 	for(col = 1; col<10; col++) {
 		if (document.getElementById(getId(i, col)).getAttribute("value") == guess) {

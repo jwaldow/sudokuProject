@@ -138,7 +138,7 @@ function setSquareNumber(guess, i, j) {
 		ctx.fillStyle='#000000';
 		ctx.fillText(guess, 150, 125);
 	}
-	if(isComplete){
+	if(isComplete=="true"){
 		alert("Wow you won! Yay for computer science");
 	}
 }
@@ -331,6 +331,7 @@ function reset(){
 			for (j = 1; j < 10; j++) {
 				var c = document.getElementById(getId(i, j));
 				c.setAttribute("is_default", "false");
+				c.setAttribute("value", null);
 				c.onmouseover = mouseOver;
 				c.onmouseout = mouseOut;
 				c.onclick = onClickSquare;

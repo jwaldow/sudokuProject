@@ -135,11 +135,14 @@ function paintUserNumber(square, number){
 
 function getConflictingSquare(guess, i, j) {
 
-	var chunck = document.getElementById(getId(i, j)).parentNode;
-	for(s = 0; s < squaresInChunk.length; s++) {
-		if (squaresInChunk[s].getAttribute("value") == guess) {
-			alert("conflict in chunk");
-			return squaresInChunk[s];
+	var chunk = document.getElementById(getId(i, j)).parentNode.childNodes;
+	for(s = 0; s < chunk.length; s++) {
+		//alert(s+": "+chunk[s]);
+		if(chunk[s].tagName == "canvas" || chunk[s].tagName == "CANVAS") {
+			if (chunk[s].getAttribute("value") == guess) {
+				alert("conflict in chunk");
+				return chunk[s];
+			}
 		}
 	}
 

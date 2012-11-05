@@ -43,8 +43,8 @@ window.onload = function() {
 
 function mouseOut(){
 	var c = document.getElementById(this.id);
-	var ctx=c.getContext('2d');
 	if(c.getAttribute("is_default")!="true"){
+		var ctx=c.getContext('2d');
 		ctx.fillStyle=emptyBG;
 		ctx.fillRect(0,0,300,300);
 		if(selected != null){
@@ -57,6 +57,12 @@ function mouseOut(){
 				stx.font = 'Bold 100pt sans-serif';
 				stx.fillText(selected.getAttribute("value"), 150, 125);
 			}
+		}
+		if(c.getAttribute("value") != null) {
+			ctx.fillStyle='#000000';
+			ctx.textAlign = 'center';
+			ctx.font = 'Bold 100pt sans-serif';
+			ctx.fillText(selected.getAttribute("value"), 150, 125);
 		}
 	}
 }
@@ -125,6 +131,12 @@ function setSquareNumber(guess, i, j) {
 		ctx.fillText(conflict.getAttribute("value"), 150, 125);
 		setTimeout(function(){revertAlert(conflict)}, 3000);
 	} else if (document.getElementById(getId(i, j)).getAttribute("is_default") == "false") {
+		document.getElementById(getId(i, j)).setAttribute("value", guess)
+		ctx = document.getElementById(getId(i, j)).getContext('2d');
+		ctx.textAlign = 'center';
+		ctx.font = 'Bold 100pt sans-serif';
+		ctx.fillStyle='#000000';
+		ctx.fillText(guess, 150, 125);
 	}
 }
 

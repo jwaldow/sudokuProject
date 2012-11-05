@@ -36,6 +36,7 @@ window.onload = function() {
 			
 		}
 	}
+	document.getElementById("reset").onclick = reset;
 }
 
 function mouseOut(){
@@ -258,4 +259,31 @@ function shuffleAgain(array){//Sub-function of shuffle. Flips rows for columns a
 	}
 	newArray=shuffle(newArray,false);
 	return newArray;
+}
+
+function reset(){
+// 	window.onload;
+	sudokuAnswer = generateBoard(); //This is...the matrix.
+	sudoku= generateUserBoard(sudokuAnswer);
+	for (i = 1; i < 10; i++) {
+			for (j = 1; j < 10; j++) {
+				var c = document.getElementById(getId(i, j));
+				c.setAttribute("is_default", "false");
+				c.onmouseover = mouseOver;
+				c.onmouseout = mouseOut;
+				c.onclick = onClickSquare;
+				var ctx=c.getContext('2d');
+				ctx.fillStyle=emptyBG;
+				ctx.fillRect(0, 0, 300, 300);
+				//sets up the pattern to draw the numbers
+				if((i % 3 == j % 5) || (((i * j) % 2) == 1)) {
+					//paintNumber(c);
+					ctx.fillStyle=default_value;
+					ctx.fillRect(0, 0, 300, 300);
+					c.setAttribute("is_default", "true");
+					c.setAttribute("value",paintNumber(c));
+				}
+				
+			}
+		}
 }

@@ -25,7 +25,8 @@
 		</div>
 	</div>
 	<div id="controls">
-		<button id="reset">Reset</button>
+		<!--<button id="reset" onClick="window.location.reload()">New Puzzle</button>-->
+		<button id="reset">New Puzzle</button>
 	</div>
 </div>
 </body>

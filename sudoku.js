@@ -26,7 +26,7 @@ window.onload = function() {
 			ctx.fillStyle=emptyBG;
 			ctx.fillRect(0, 0, 300, 300);
 			//sets up the pattern to draw the numbers
-			if((i%3==j%5)||(((i*j)%2)==1)){
+			if((i % 3 == j % 5) || (((i * j) % 2) == 1)) {
 				//paintNumber(c);
 				ctx.fillStyle=default_value;
 				ctx.fillRect(0, 0, 300, 300);
@@ -90,10 +90,12 @@ function getId(i, j) {
 //Easiest way to do this would be a keypress after the square is selected.
 function setSquareNumber(guess, i, j) {
 	var conflict = getConflictingSquare(guess, i, j);
-	if (conflict == null)
-		highlightRed(conflict);
+	if (conflict == null) {
+		alert("conflict!!!");
+		//highlightRed(conflict);
 	} else if (getElementById(getId(i, j)).getAttribute("is_default") == "false") {
-		paintNumber(guess, i, j);
+		alert("no conflict");
+		//paintNumber(guess, i, j);
 	}
 }
 

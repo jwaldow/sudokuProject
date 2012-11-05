@@ -25,7 +25,11 @@ window.onload = function() {
 			var ctx=c.getContext('2d');
 			ctx.fillStyle=emptyBG;
 			ctx.fillRect(0, 0, 300, 300);
-			paintNumber(c);
+			//sets up the pattern to draw the numbers
+			if((i%3==j%5)||(((i*j)%2)==1)){
+				paintNumber(c);
+			}
+			
 		}
 	}
 }

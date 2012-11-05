@@ -126,6 +126,9 @@ function setSquareNumber(guess, i, j) {
 		setTimeout(function(){revertAlert(conflict)}, 3000);
 	} else if (document.getElementById(getId(i, j)).getAttribute("is_default") == "false") {
 	}
+	if(isComplete){
+		alert("Wow you won! Yay for computer science");
+	}
 }
 
 function revertAlert(square){
@@ -264,7 +267,16 @@ function isComplete() {
 	JON LEWIS TODO: Research board uniqness. 
 		DONE: Board solutions are unique. Needs only to check against our solution.
 	*/
-	return done;
+	var isDone = true;
+	for (i = 1; i < 10; i++) {
+		for (j = 1; j < 10; j++) {
+			var c = document.getElementById(getId(i, j));
+			if(c.getAttribute("value")==null){
+				isDone=false;
+			}
+		}
+	}
+	return isDone;
 }
 
 function shuffle(array,callAgain){//Shuffles the puzzle. Put in "true" if calling from outside

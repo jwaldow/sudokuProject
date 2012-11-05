@@ -9,6 +9,7 @@ var userGenNum = '#033E6B'; //User generated number.
 var mouseHover = '#FFEC73';	//No comment needed.
 var mouseClicked = '#FFDD00';
 var emptyBG = '#EDEDED';
+var default_value = 'lightgrey';
 
 var sudokuAnswer = generateBoard(); //This is...the matrix.
 var sudoku= generateUserBoard(sudokuAnswer);
@@ -17,17 +18,20 @@ window.onload = function() {
 	for (i = 1; i < 10; i++) {
 		for (j = 1; j < 10; j++) {
 			var c = document.getElementById(getId(i, j));
-			
+			c.setAttribute("is_default", false);
 			c.onmouseover = mouseOver;
 			c.onmouseout = mouseOut;
 			c.onclick = onClickSquare;
-			
 			var ctx=c.getContext('2d');
 			ctx.fillStyle=emptyBG;
 			ctx.fillRect(0, 0, 300, 300);
 			//sets up the pattern to draw the numbers
 			if((i%3==j%5)||(((i*j)%2)==1)){
-				paintNumber(c);
+				//paintNumber(c);
+				ctx.fillStyle=default_value;
+				ctx.fillRect(0, 0, 300, 300);
+				c.setAttribute("is_default", true);
+				c.setAttribute("value",paintNumber(c));
 			}
 			
 		}
@@ -37,15 +41,17 @@ window.onload = function() {
 function mouseOut(){
 	var c = document.getElementById(this.id);
 	var ctx=c.getContext('2d');
-	ctx.fillStyle=emptyBG;
-	ctx.fillRect(0, 0, 300, 300);
-	paintNumber(c);
-
-	if (selected != null) {
-		var ctx = selected.getContext('2d');
-		ctx.fillStyle=mouseClicked;
+	if(c.getAttribute("is_default")!=true){
+		ctx.fillStyle=emptyBG;
 		ctx.fillRect(0, 0, 300, 300);
-		paintNumber(selected);
+		//paintNumber(c);
+
+		if (selected != null) {
+			var ctx = selected.getContext('2d');
+			ctx.fillStyle=mouseClicked;
+			ctx.fillRect(0, 0, 300, 300);
+			paintNumber(selected);
+		}
 	}
 }
 
@@ -58,6 +64,7 @@ function onClickSquare() {
 	}
 
 	selected = document.getElementById(this.id);
+	alert("value "+selected.getAttribute("is_default"));
 	var ctx = selected.getContext('2d');
 	ctx.fillStyle=mouseClicked;
 	ctx.fillRect(0, 0, 300, 300);
@@ -66,10 +73,12 @@ function onClickSquare() {
 
 function mouseOver(){
 	var c = document.getElementById(this.id);
-	var ctx=c.getContext('2d');
-	ctx.fillStyle=mouseHover;
-	ctx.fillRect(0, 0, 300, 300);
-	paintNumber(c);
+	if(c.getAttribute("is_default")!="true"){
+		var ctx=c.getContext('2d');
+		ctx.fillStyle=mouseHover;
+		ctx.fillRect(0, 0, 300, 300);
+		paintNumber(c);
+	}
 }
 
 function getId(i, j) {
@@ -154,6 +163,7 @@ function paintNumber(square) {
 		ctx.fillStyle=userGenNum;
 		ctx.fillText(name,150,120);
 	}
+	return name;
 }
 
 //TODO

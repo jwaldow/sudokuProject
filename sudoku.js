@@ -22,7 +22,8 @@ window.onload = function() {
 			var ctx=c.getContext('2d');
 			ctx.fillStyle=emptyBG;
 			ctx.fillRect(0, 0, 300, 300);
-			paintNumber(c);
+
+			//paintNumber(c);
 		}
 	}
 }

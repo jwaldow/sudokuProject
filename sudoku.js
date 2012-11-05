@@ -18,7 +18,7 @@ window.onload = function() {
 	for (i = 1; i < 10; i++) {
 		for (j = 1; j < 10; j++) {
 			var c = document.getElementById(getId(i, j));
-			c.setAttribute("is_default", false);
+			c.setAttribute("is_default", "false");
 			c.onmouseover = mouseOver;
 			c.onmouseout = mouseOut;
 			c.onclick = onClickSquare;
@@ -30,7 +30,7 @@ window.onload = function() {
 				//paintNumber(c);
 				ctx.fillStyle=default_value;
 				ctx.fillRect(0, 0, 300, 300);
-				c.setAttribute("is_default", true);
+				c.setAttribute("is_default", "true");
 				c.setAttribute("value",paintNumber(c));
 			}
 			
@@ -41,7 +41,7 @@ window.onload = function() {
 function mouseOut(){
 	var c = document.getElementById(this.id);
 	var ctx=c.getContext('2d');
-	if(c.getAttribute("is_default")!=true){
+	if(c.getAttribute("is_default")!="true"){
 		ctx.fillStyle=emptyBG;
 		ctx.fillRect(0, 0, 300, 300);
 		//paintNumber(c);

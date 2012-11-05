@@ -125,7 +125,6 @@ function setSquareNumber(guess, i, j) {
 		ctx.fillText(conflict.getAttribute("value"), 150, 125);
 		setTimeout(function(){revertAlert(conflict)}, 3000);
 	} else if (document.getElementById(getId(i, j)).getAttribute("is_default") == "false") {
-		alert("no conflict");
 	}
 }
 
@@ -160,24 +159,23 @@ function paintUserNumber(square, number){
 
 function getConflictingSquare(guess, i, j) {
 
-	var chunck = document.getElementById(getId(i, j)).parentNode;
-	// for(s = 0; s < squaresInChunk.length; s++) {
-	// 	if (squaresInChunk[s].getAttribute("value") == guess) {
-	// 		alert("conflict in chunk");
-	// 		return squaresInChunk[s];
-	// 	}
-	// }
+	var chunk = document.getElementById(getId(i, j)).parentNode.childNodes;
+	for(s = 0; s < chunk.length; s++) {
+		if(chunk[s].tagName == "canvas" || chunk[s].tagName == "CANVAS") {
+			if (chunk[s].getAttribute("value") == guess) {
+				return chunk[s];
+			}
+		}
+	}
 
 	for(col = 1; col<10; col++) {
 		if (document.getElementById(getId(i, col)).getAttribute("value") == guess) {
-			alert("conflict in i: i="+i+" j="+j+" col="+col+" guess="+guess);
 			return document.getElementById(getId(i, col));
 		}
 	}
 
 	for(row = 1; row<10; row++) {
 		if (document.getElementById(getId(row, j)).getAttribute("value") == guess) {
-			alert("conflict in j: i="+i+" j="+j+" row="+row+" guess="+guess);
 			return document.getElementById(getId(row, j));
 		}
 	}

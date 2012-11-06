@@ -122,7 +122,8 @@ function setSquareNumber(guess, i, j) {
 	}
 	
 	if(isComplete()==true){
-		alert("Wow you won! Yay for computer science");
+		var win = document.getElementById("winner");
+		win.style.visibility='visible';
 	}
 }
 

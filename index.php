@@ -8,7 +8,8 @@
 </head>
 <body>
 <div id="content">
-	<h1>HTML5 Sudoku</h1>
+	<h1 class="wordart" title="HTML5 Sudoku">HTML5 Sudoku</h1>
+	<h2 id="winner" class="blink" style="visibility: hidden;" >You Win!!!</h2>
 	<div id="background">
 		<div id="board">
 		<?php for($bigi=1; $bigi<10; $bigi+=3) { ?>

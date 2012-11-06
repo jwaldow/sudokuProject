@@ -274,6 +274,7 @@ function shuffleAgain(array){//Sub-function of shuffle. Flips rows for columns a
 
 function reset() {
 	selected = null;
+	document.getElementById("winner").style.visibility = 'hidden';
 	sudokuAnswer = generateBoard(); //This is...the matrix.
 	sudoku= generateUserBoard(sudokuAnswer);
 	for (i = 1; i < 10; i++) {

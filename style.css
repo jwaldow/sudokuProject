@@ -79,6 +79,12 @@ canvas.square {
 	height:34px;
 }
 
+/**	The below code is provided by:
+ *    Real-World CSS
+ *    by @visualidiot. Licensed under WTPFL.
+ */
+ 
+
 .blink {
     -webkit-animation: blink .75s linear infinite;
     -moz-animation: blink .75s linear infinite;
@@ -163,3 +169,84 @@ canvas.square {
     
     opacity: .1;
 }
+
+
+.marquee {
+    height: 30px;
+    
+    overflow: hidden;
+    position: relative;
+}
+    .marquee div {
+        display: block;
+        width: 200%;
+        height: 30px;
+        
+        position: absolute;
+        overflow: hidden;
+        
+        -webkit-animation: marquee 4s linear infinite;
+        -moz-animation: marquee 4s linear infinite;
+        -ms-animation: marquee 4s linear infinite;
+        -o-animation: marquee 4s linear infinite;
+        animation: marquee 4s linear infinite;
+    }
+    .marquee span {
+        float: left;
+        width: 50%;
+    }
+    
+@-webkit-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@-moz-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@-ms-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@-o-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+
+/* @group Third Degree */
+
+.third-degree_cw {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    transform: rotate(3deg);
+    
+    font-size: 2em;
+    display: inline-block;
+    position: relative;
+    
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9986295347545738, M12=-0.05233595624294383, M21=0.05233595624294383, M22=0.9986295347545738, sizingMethod='auto expand');
+    zoom: 1;
+}
+
+.third-degree_ccw {
+    -webkit-transform: rotate(357deg);
+    -moz-transform: rotate(357deg);
+    -ms-transform: rotate(357deg);
+    -o-transform: rotate(357deg);
+    transform: rotate(357deg);
+    
+    font-size: 2em;
+    display: inline-block;
+    position: relative;
+    
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9986295347545738, M12=-0.05233595624294383, M21=0.05233595624294383, M22=0.9986295347545738, sizingMethod='auto expand');
+    zoom: 1;
+}
+
+/* @end */

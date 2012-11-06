@@ -8,7 +8,13 @@
 </head>
 <body>
 <div id="content">
-	<h1 class="wordart" title="HTML5 Sudoku">HTML5 Sudoku</h1>
+	<h1 class="wordart" title="HTML5 Sudoku">HTML5 Sudoku</h1><br />
+	<span class="third-degree_cw">
+		To enter a number, click the desired square and press a number on your keyboard.
+	</span><br /><br /><br />
+	<span class="third-degree_ccw">	
+		To erase a number, do the same, but enter a number 0.
+	</span>
 	<h2 id="winner" class="blink" style="visibility: hidden;" >You Win!!!</h2>
 	<div id="background">
 		<div id="board">
@@ -26,7 +32,7 @@
 		</div>
 	</div>
 	<div id="controls">
-		<button id="reset">Reset</button>
+		<button id="reset">New Game</button>
 	</div>
 </div>
 </body>

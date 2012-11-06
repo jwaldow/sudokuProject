@@ -122,8 +122,8 @@ function setSquareNumber(guess, i, j) {
 		writeNumber(document.getElementById(getId(i, j)), guess);
 	}
 	
-	/*isComplete()==true*/
-	if (true){
+	/**/
+	if (isComplete()==true) {
 		var win = document.getElementById("winner");
 		win.style.visibility='visible';
 	}

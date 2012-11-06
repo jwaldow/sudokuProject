@@ -1,17 +1,21 @@
 body{
-	background-color:#5FA92A;
+	background-color: #FFDAA5;
+	/*background-color:#879E85;*/
 }
 
 h1{
-	color: #033E6B;
+	color: #515E52;
 }
 
 h2{
-	color: #033E6B;
+	color: #4AC740;
+	font-size: 5em;
 	position: absolute;
-	margin-top:45%;
-	margin-left:40%;
-	background-color:#0776A0;
+	margin-top: 25%;
+	margin-left: 40%;
+	width: 300px;
+	height: 200px;
+	background-color:#76677A;
 	z-index:1;
 }
 
@@ -44,18 +48,18 @@ canvas.square {
 	margin-left:auto;
 	margin-right:auto;
 	width: 550px;
-	height:550px;
+	height:535px;
 	border-radius:25px; 
    -moz-border-radius:25px;
-	box-shadow: 10px 10px 5px #024C68;
-	background-color:#0776A0;
+	box-shadow: 10px 10px 5px #6D6073;
+	background-color:#AB96B2;
 	margin-bottom:30px;
 }
 
 #board{
 	position:absolute;
 	width:510px; 
-	height:500px;
+	height:485px;
 	margin-left:20px;
 	margin-top:25px;
 	background-color: black;
@@ -100,6 +104,7 @@ canvas.square {
 @-ms-keyframes blink {
     0% { opacity: 1; }
     50% { opacity: 1; }
+
     50.01% { opacity: 0; }
     100% { opacity: 0; }
 }
@@ -128,32 +133,33 @@ canvas.square {
     
     font: bold 48px "Arial Narrow", sans-serif;
 }
-    .wordart:before {
-        content: attr(title);
-        
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 2;
-        
-        background: -webkit-linear-gradient(left, rgb(176,9,151) 0%, rgb(227,33,107) 10%, rgb(249,96,30) 25%, rgb(255,180,18) 40%, rgb(255,216,45) 50%, rgb(185,221,23) 61%, rgb(65,160,60) 75%, rgb(19,54,180) 90%, rgb(116,27,157) 100%);
-        
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .wordart:after {
-        content: attr(title);
 
-        position: absolute;
-        z-index: 199;
-        left: -6px;
-        bottom: -10px;
-        
-        z-index: 1;
-        
-        
-        -webkit-text-fill-color: #000;
-        -webkit-transform: skew(40deg, 0deg) scaleY(.5);
-        
-        opacity: .3;
-    }
+.wordart:before {
+    content: attr(title);
+    
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    
+    background: #949261;
+    
+    -webkit-background-clip: text;
+}
+
+.wordart:after {
+    content: attr(title);
+
+    position: absolute;
+    z-index: 199;
+    left: -6px;
+    bottom: -10px;
+    
+    z-index: 1;
+    
+    
+    -webkit-text-fill-color: #000;
+    -webkit-transform: skew(40deg, 0deg) scaleY(.5);
+    
+    opacity: .1;
+}

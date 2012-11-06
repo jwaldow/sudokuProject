@@ -94,6 +94,7 @@ function writeNumber(c, num) {
 }
 
 function onKeyPress(event) {
+	
 	var chCode = (('charCode' in event) ? event.charCode : event.keyCode) ;
 	var guess = chCode - 48;
 	if (selected != null && guess >= 1 && guess <= 9) {
@@ -121,7 +122,8 @@ function setSquareNumber(guess, i, j) {
 		writeNumber(document.getElementById(getId(i, j)), guess);
 	}
 	
-	if(isComplete()==true){
+	/*isComplete()==true*/
+	if (true){
 		var win = document.getElementById("winner");
 		win.style.visibility='visible';
 	}
